@@ -39,10 +39,11 @@ const styles = (theme) => ({
   span: {
     [theme.breakpoints.down('md')]: {
       margin: '1rem 5rem',
+      fontSize: '.6rem',
     },
     [theme.breakpoints.down('xs')]: {
       margin: '.5rem 2rem',
-      fontSize: '.5rem',
+      fontSize: '.6rem',
     },
 
     textAlign: 'center',
@@ -59,7 +60,7 @@ const styles = (theme) => ({
     [theme.breakpoints.down('md')]: {
       padding: ' 4px',
       marginLeft: '1rem',
-      fontSize: '.7rem',
+      fontSize: '.8rem',
     },
     [theme.breakpoints.down('xs')]: {
       marginLeft: '1rem',

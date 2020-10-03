@@ -25,8 +25,9 @@ const styles = (theme) => ({
   span: {
     [theme.breakpoints.down('md')]: {
       margin: '1rem 0',
+      text: 'jsutify',
     },
-    textAlign: 'center',
+    textAlign: 'left',
     margin: '1rem 10rem',
     color: '#d0c1c1',
   },
