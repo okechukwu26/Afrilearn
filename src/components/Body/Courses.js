@@ -1,9 +1,11 @@
 import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
-import lib from '../../images/lib.jpg';
-import back from '../../images/met.jpg';
-import av from '../../images/pep.jpg';
-import bran from '../../images/bran.jpg';
+import lib from '../../images/met.jpg';
+import back from '../../images/back.jpg';
+import av from '../../images/lap.jpg';
+import bran from '../../images/pencil.jpg';
+import pep from '../../images/pep.jpg';
+import draw from '../../images/draw.jpg';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
@@ -14,29 +16,30 @@ import { Typography } from '@material-ui/core';
 const style = (theme) => ({
   media: {
     height: '20rem',
+    objectFit: 'contain',
+    width: '30rem',
     [theme.breakpoints.down('md')]: {
       height: '10rem',
+      overflow: 'hidden',
     },
   },
   card: {
     margin: '0 3rem',
     marginBottom: '3rem',
+    overflow: 'hiddden',
     [theme.breakpoints.down('md')]: {
       margin: '.4rem 1rem',
+      overflow: 'hidden',
     },
   },
-  grid: {
-    margin: '0 3rem',
-    [theme.breakpoints.down('md')]: {
-      margin: '0 3rem',
-    },
-  },
+
   font: {
     fontSize: '1.2rem',
     fontWeight: 'bold',
     fontFamily: 'auto',
     [theme.breakpoints.down('md')]: {
       fontSize: '1rem',
+      overflow: 'hidden',
     },
   },
   fan: {
@@ -48,157 +51,209 @@ const style = (theme) => ({
     color: '#7d7d06',
     [theme.breakpoints.down('md')]: {
       padding: '0',
+      overflow: 'hidden',
     },
   },
   head: {
     textAlign: 'center',
     fontSize: '2rem',
+    overflow: 'hiddden',
     fontFamily: 'auto',
     fontWeight: 'bold',
+  },
+  grid: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: '1rem 0',
+  },
+  img: {
+    width: '10rem',
+  },
+  cont: {
+    display: 'flex',
+    justifyContent: 'space-evenly',
+    [theme.breakpoints.down('xs')]: {},
   },
 });
 
 const Courses = ({ classes }) => {
   return (
     <>
-      <CardContent>
-        <Typography varaint='h2' className={classes.head}>
-          Popular Courses
-        </Typography>
-      </CardContent>
-      <Grid container className={classes.grid}>
-        <Grid item xs={4} md={2} className={classes.card}>
+      <Typography variant='h2' className={classes.head}>
+        Popular Courses
+      </Typography>
+      <Grid container className={classes.cont}>
+        <Grid item xs={5} sm={3} md={4} className={classes.grid}>
           <Card>
             <CardActionArea>
-              <CardMedia
-                className={classes.media}
-                image={lib}
-                title='Lorem ipsum dolor sit'
-              />
+              <CardMedia image={lib} className={classes.media} />
               <CardContent>
                 <Typography variant='h3' className={classes.font}>
                   Lorem ipsum dolor sit
                 </Typography>
                 <Typography variant='h3' className={classes.fan}>
-                  Lorem
+                  Lorem{' '}
+                  <span>
+                    <i
+                      className={`${classes.star} fa fa-star-o`}
+                      aria-hidden='true'
+                    ></i>
+                    <i
+                      className={`${classes.star} fa fa-star-o`}
+                      aria-hidden='true'
+                    ></i>
+                    <i
+                      className={`${classes.star} fa fa-star-o`}
+                      aria-hidden='true'
+                    ></i>
+                  </span>
                 </Typography>
-              </CardContent>
-              <CardContent>
-                <i
-                  className={`${classes.star} fa fa-star-o`}
-                  aria-hidden='true'
-                ></i>
-                <i
-                  className={`${classes.star} fa fa-star-o`}
-                  aria-hidden='true'
-                ></i>
-                <i
-                  className={`${classes.star} fa fa-star-o`}
-                  aria-hidden='true'
-                ></i>
-                <i
-                  className={`${classes.star} fa fa-star-o`}
-                  aria-hidden='true'
-                ></i>
               </CardContent>
             </CardActionArea>
           </Card>
         </Grid>
-        <Grid item xs={4} md={2} className={classes.card}>
+        <Grid item xs={5} sm={3} md={4} className={classes.grid}>
           <Card>
             <CardActionArea>
-              <CardMedia
-                className={classes.media}
-                image={back}
-                title='Lorem ipsum dolor sit'
-              />
+              <CardMedia image={back} className={classes.media} />
               <CardContent>
                 <Typography variant='h3' className={classes.font}>
                   Lorem ipsum dolor sit
                 </Typography>
                 <Typography variant='h3' className={classes.fan}>
-                  Lorem
+                  Lorem{' '}
+                  <span>
+                    <i
+                      className={`${classes.star} fa fa-star-o`}
+                      aria-hidden='true'
+                    ></i>
+                    <i
+                      className={`${classes.star} fa fa-star-o`}
+                      aria-hidden='true'
+                    ></i>
+                    <i
+                      className={`${classes.star} fa fa-star-o`}
+                      aria-hidden='true'
+                    ></i>
+                  </span>
                 </Typography>
-              </CardContent>
-              <CardContent>
-                <i
-                  className={`${classes.star} fa fa-star-o`}
-                  aria-hidden='true'
-                ></i>{' '}
-                <i
-                  className={`${classes.star} fa fa-star-o`}
-                  aria-hidden='true'
-                ></i>{' '}
-                <i
-                  className={`${classes.star} fa fa-star-o`}
-                  aria-hidden='true'
-                ></i>
               </CardContent>
             </CardActionArea>
           </Card>
         </Grid>
-        <Grid item xs={4} md={2} className={classes.card}>
+        <Grid item xs={5} sm={3} md={4} className={classes.grid}>
           <Card>
             <CardActionArea>
-              <CardMedia
-                className={classes.media}
-                image={av}
-                title='Lorem ipsum dolor sit'
-              />
+              <CardMedia image={bran} className={classes.media} />
               <CardContent>
                 <Typography variant='h3' className={classes.font}>
                   Lorem ipsum dolor sit
                 </Typography>
                 <Typography variant='h3' className={classes.fan}>
-                  Lorem
+                  Lorem{' '}
+                  <span>
+                    <i
+                      className={`${classes.star} fa fa-star-o`}
+                      aria-hidden='true'
+                    ></i>
+                    <i
+                      className={`${classes.star} fa fa-star-o`}
+                      aria-hidden='true'
+                    ></i>
+                    <i
+                      className={`${classes.star} fa fa-star-o`}
+                      aria-hidden='true'
+                    ></i>
+                  </span>
                 </Typography>
-              </CardContent>
-              <CardContent>
-                <i
-                  className={`${classes.star} fa fa-star-o`}
-                  aria-hidden='true'
-                ></i>
-                <i
-                  className={`${classes.star} fa fa-star-o`}
-                  aria-hidden='true'
-                ></i>
-                <i
-                  className={`${classes.star} fa fa-star-o`}
-                  aria-hidden='true'
-                ></i>
-                <i
-                  className={`${classes.star} fa fa-star-o`}
-                  aria-hidden='true'
-                ></i>
               </CardContent>
             </CardActionArea>
           </Card>
         </Grid>
-        <Grid item xs={4} md={2} className={classes.card}>
+        <Grid item xs={5} sm={3} md={4} className={classes.grid}>
           <Card>
             <CardActionArea>
-              <CardMedia
-                className={classes.media}
-                image={bran}
-                title='Lorem ipsum dolor sit'
-              />
+              <CardMedia image={av} className={classes.media} />
               <CardContent>
                 <Typography variant='h3' className={classes.font}>
                   Lorem ipsum dolor sit
                 </Typography>
                 <Typography variant='h3' className={classes.fan}>
                   Lorem
+                  <span>
+                    <i
+                      className={`${classes.star} fa fa-star-o`}
+                      aria-hidden='true'
+                    ></i>
+                    <i
+                      className={`${classes.star} fa fa-star-o`}
+                      aria-hidden='true'
+                    ></i>
+                    <i
+                      className={`${classes.star} fa fa-star-o`}
+                      aria-hidden='true'
+                    ></i>
+                  </span>
                 </Typography>
               </CardContent>
+            </CardActionArea>
+          </Card>
+        </Grid>
+        <Grid item xs={5} sm={3} md={4} className={classes.grid}>
+          <Card>
+            <CardActionArea>
+              <CardMedia image={pep} className={classes.media} />
               <CardContent>
-                <i
-                  className={`${classes.star} fa fa-star-o`}
-                  aria-hidden='true'
-                ></i>
-                <i
-                  className={`${classes.star} fa fa-star-o`}
-                  aria-hidden='true'
-                ></i>
+                <Typography variant='h3' className={classes.font}>
+                  Lorem ipsum dolor sit
+                </Typography>
+                <Typography variant='h3' className={classes.fan}>
+                  Lorem{' '}
+                  <span>
+                    <i
+                      className={`${classes.star} fa fa-star-o`}
+                      aria-hidden='true'
+                    ></i>
+                    <i
+                      className={`${classes.star} fa fa-star-o`}
+                      aria-hidden='true'
+                    ></i>
+                    <i
+                      className={`${classes.star} fa fa-star-o`}
+                      aria-hidden='true'
+                    ></i>
+                  </span>
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        </Grid>
+        <Grid item xs={5} sm={3} md={4} className={classes.grid}>
+          <Card>
+            <CardActionArea>
+              <CardMedia image={draw} className={classes.media} />
+              <CardContent>
+                <Typography variant='h3' className={classes.font}>
+                  Lorem ipsum dolor sit
+                </Typography>
+                <Typography variant='h3' className={classes.fan}>
+                  Lorem{' '}
+                  <span>
+                    <i
+                      className={`${classes.star} fa fa-star-o`}
+                      aria-hidden='true'
+                    ></i>
+                    <i
+                      className={`${classes.star} fa fa-star-o`}
+                      aria-hidden='true'
+                    ></i>
+                    <i
+                      className={`${classes.star} fa fa-star-o`}
+                      aria-hidden='true'
+                    ></i>
+                  </span>
+                </Typography>
               </CardContent>
             </CardActionArea>
           </Card>

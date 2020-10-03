@@ -24,14 +24,7 @@ a:hover {
   color: #a4038a;
   text-decoration: none;
 }
-body {
-  overflow-x: hidden;
-}
-@media (max-width: 769px) {
-  body {
-    overflow-x: hidden;
-  }
-}
+/*  */
 .fa {
   padding: 5px;
 }

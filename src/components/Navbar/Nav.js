@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-
+import Afr from '../../images/afr.png';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -48,6 +48,10 @@ const styles = (theme) => ({
     fontSize: '.7rem',
     marginRight: '.5rem',
   },
+  img: {
+    color: 'red',
+    fontSize: '2rem',
+  },
 });
 
 const Nav = (props) => {
@@ -78,7 +82,7 @@ const Nav = (props) => {
         <Toolbar className={classes.tool}>
           <Typography variant='h4'>
             <Link to='/' className={classes.head}>
-              Afrilearn
+              <img src={Afr} alt='' className={classes.img} />
             </Link>
           </Typography>
           <div className={classes.navlink}>

@@ -57,14 +57,14 @@ const styles = (theme) => ({
   },
   start: {
     [theme.breakpoints.down('md')]: {
-      padding: '2px 4px',
+      padding: ' 4px',
       marginLeft: '1rem',
       fontSize: '.7rem',
     },
     [theme.breakpoints.down('xs')]: {
       marginLeft: '1rem',
-      fontSize: '.2rem',
-      padding: '1px 2px',
+      fontSize: '.7rem',
+      padding: '4px ',
     },
     marginLeft: '2rem',
   },
