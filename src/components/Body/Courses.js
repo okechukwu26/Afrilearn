@@ -83,7 +83,7 @@ const Courses = ({ classes }) => {
       <Typography variant='h2' className={classes.head}>
         Popular Courses
       </Typography>
-      <Grid container className={classes.cont}>
+      <Grid container spacing={2} className={classes.cont}>
         <Grid item xs={5} sm={3} md={4} className={classes.grid}>
           <Card>
             <CardActionArea>
