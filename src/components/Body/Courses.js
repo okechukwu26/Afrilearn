@@ -32,7 +32,7 @@ const style = (theme) => ({
     },
   },
   font: {
-    fontSize: '1.4rem',
+    fontSize: '1.2rem',
     fontWeight: 'bold',
     fontFamily: 'auto',
     [theme.breakpoints.down('md')]: {
