@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import back from '../images/back.jpg';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typograhy from '@material-ui/core/Typography';
@@ -70,9 +70,6 @@ const styles = (theme) => ({
 });
 
 function Home(props) {
-  useEffect(() => {
-    setTimeout(props.history.push('/'), 1000);
-  }, [props.history]);
   const { classes } = props;
   return (
     <>

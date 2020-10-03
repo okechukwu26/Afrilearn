@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -7,6 +7,8 @@ import Typography from '@material-ui/core/Typography';
 import { Link, NavLink, withRouter } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import SideBar from './SideBar';
+import axios from 'axios';
+import LearnContext from '../../context';
 
 const styles = (theme) => ({
   nav: {
@@ -43,9 +45,10 @@ const styles = (theme) => ({
     marginRight: '.5rem',
   },
 });
-const token = localStorage.getItem('token');
+
 const Nav = (props) => {
-  // const context = useContext(LearnContext);
+  const auth = localStorage.token;
+  const { token } = useContext(LearnContext);
   const [open, modalOpen] = useState(false);
 
   const Modal = () => {
@@ -56,6 +59,7 @@ const Nav = (props) => {
   };
   const logout = () => {
     localStorage.removeItem('token');
+    delete axios.defaults.headers.common['Authorization'];
     props.history.push('/');
   };
 
@@ -89,7 +93,7 @@ const Nav = (props) => {
             >
               CONTACT
             </Button>
-            {!token && (
+            {!(token || auth) && (
               <Button
                 variant='contained'
                 color='primary'
@@ -101,7 +105,7 @@ const Nav = (props) => {
                 Login
               </Button>
             )}
-            {!token && (
+            {!(token || auth) && (
               <Button
                 variant='contained'
                 color='primary'
@@ -113,20 +117,22 @@ const Nav = (props) => {
                 Signup
               </Button>
             )}
-            {token && (
-              <Button
-                component={Link}
-                to='/dashboard'
-                className={classes.navlink}
-              >
-                Dashboard
-              </Button>
-            )}
-            {token && (
-              <Button className={classes.navlink} onClick={logout}>
-                logout
-              </Button>
-            )}
+            {token ||
+              (auth && (
+                <Button
+                  component={Link}
+                  to='/dashboard'
+                  className={classes.navlink}
+                >
+                  Dashboard
+                </Button>
+              ))}
+            {token ||
+              (auth && (
+                <Button className={classes.navlink} onClick={logout}>
+                  logout
+                </Button>
+              ))}
           </div>
           <i
             className={`${classes.icn} fa fa-bars fa-2x`}

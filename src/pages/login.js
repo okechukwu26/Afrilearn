@@ -18,6 +18,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import axios from 'axios';
 const styles = (theme) => ({
   back: {
     background: '#fff',
@@ -89,32 +90,43 @@ class login extends Component {
       this.setState({ loading: true });
     }
     try {
-      const res = await fetch('/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newUserData),
-      });
-      if (res.status !== 200) {
-        const error = await res.json();
-        if (this.isActive) {
-          this.setState({ errors: error, loading: false });
-        }
-      }
-      if (res.status === 200) {
-        const data = await res.json();
-        console.log(data, this.props);
-        this.setAuth(data.idToken);
-        if (this.isActive) {
-          this.setState({ loading: false });
-          this.props.history.push('/dashboard');
-        }
-      }
+      const res = await axios.post('/login', newUserData);
+      this.setAuth(res.data.idToken);
+      this.setState({ loading: false });
+      this.context.login(res.data.idToken);
+      this.props.history.push('/dashboard');
     } catch (error) {
-      console.log(error.message);
+      this.setState({ errors: error.response.data, loading: false });
     }
+    // try {
+    //   const res = await fetch('/login', {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify(newUserData),
+    //   });
+    //   if (res.status !== 200) {
+    //     const error = await res.json();
+    //     if (this.isActive) {
+    //       this.setState({ errors: error, loading: false });
+    //     }
+    //   }
+    //   if (res.status === 200) {
+    //     const data = await res.json();
+    //     console.log(data, this.props);
+    //     this.setAuth(data.idToken);
+    //     if (this.isActive) {
+    //       this.setState({ loading: false });
+    //       this.props.history.push('/dashboard');
+    //     }
+    //   }
+    // } catch (error) {
+    //   console.log(error.message);
+    // }
   };
   setAuth = (token) => {
     localStorage.setItem('token', token);
+    const FbIdToken = `Bearer ${token}`;
+    axios.defaults.headers.common['Authorization'] = FbIdToken;
   };
   handleChange = (e) => {
     const value = e.target.value;

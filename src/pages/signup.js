@@ -11,6 +11,7 @@ import PhoneAndroidIcon from '@material-ui/icons/PhoneAndroid';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
+import axios from 'axios';
 
 // import PeopleIcon from '@material-ui/icons/People';
 
@@ -105,32 +106,19 @@ class signup extends Component {
       this.setState({ loading: true });
     }
     try {
-      const res = await fetch('/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newUserData),
-      });
-      if (res.status !== 201) {
-        const error = await res.json();
-        if (this.isActive) {
-          this.setState({ errors: error, loading: false });
-        }
-      }
-      if (res.status === 201) {
-        const data = await res.json();
-        console.log(data, this.props);
-        this.setAuth(data.idToken);
-        if (this.isActive) {
-          this.setState({ loading: false });
-          this.props.history.push('/dashboard');
-        }
-      }
+      const res = await axios.post('/signup', newUserData);
+      this.setState({ loading: false });
+      this.setAuth(res.data.idToken);
+      this.context.login(res.data.idToken);
+      this.props.history.push('/dashboard');
     } catch (error) {
-      console.log(error.message);
+      this.setState({ errors: error.response.data, loading: false });
     }
   };
   setAuth = (token) => {
     localStorage.setItem('token', token);
+    const FbIdToken = `Bearer ${token}`;
+    axios.defaults.headers.common['Authorization'] = FbIdToken;
   };
   handleChange = (e) => {
     const value = e.target.value;
