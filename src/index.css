@@ -27,6 +27,11 @@ a:hover {
 body {
   overflow-x: hidden;
 }
+@media (max-width: 769px) {
+  body {
+    overflow-x: hidden;
+  }
+}
 .fa {
   padding: 5px;
 }

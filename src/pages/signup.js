@@ -25,11 +25,11 @@ import PeopleIcon from '@material-ui/icons/People';
 
 const styles = (theme) => ({
   back: {
-    background: '#fff',
-    backgroundImage: `url(${back})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center center',
+    background: '#8b8181',
+    // backgroundImage: `url(${back})`,
+    // backgroundRepeat: 'no-repeat',
+    // backgroundSize: 'cover',
+    // backgroundPosition: 'center center',
   },
   form: {
     marginTop: '4rem',
@@ -38,8 +38,9 @@ const styles = (theme) => ({
   textField: {
     margin: '1rem 0',
     color: '#fff',
+
     '& label': {
-      color: '#f65105',
+      color: '#fff',
       fontSize: '1.3rem',
       fontWeight: 'bolder',
       transition: 'all .5s linear',

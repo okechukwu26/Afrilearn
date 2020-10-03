@@ -21,12 +21,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import axios from 'axios';
 const styles = (theme) => ({
   back: {
-    background: '#fff',
-    backgroundImage: `url(${back})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center center',
-    height: '100vh',
+    background: '#8b8181',
   },
   form: {
     marginTop: '4rem',
@@ -34,10 +29,17 @@ const styles = (theme) => ({
     marginBottom: '10rem',
   },
   textField: {
+    [theme.breakpoints.down('md')]: {
+      '& input': {
+        color: '#0b85ed',
+        fontWeight: 'bolder',
+        fontSize: '1.3rem',
+      },
+    },
     margin: '1rem 0',
     color: '#fff',
     '& label': {
-      color: '#f65105',
+      color: '#fff',
       fontSize: '1.3rem',
       transition: 'all .5s linear',
       fontWeight: 'bolder',

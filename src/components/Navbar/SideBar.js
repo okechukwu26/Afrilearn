@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import LearnContext from '../../context';
 import axios from 'axios';
@@ -67,7 +67,7 @@ const styles = (theme) => ({
   },
 });
 
-const SideBar = ({ open, classes, close, history }) => {
+const SideBar = ({ open, classes, close, logout }) => {
   const { token } = useContext(LearnContext);
   let className;
   if (open) {
@@ -75,11 +75,12 @@ const SideBar = ({ open, classes, close, history }) => {
   } else {
     className = classes.mod;
   }
-  const logout = () => {
-    localStorage.removeItem('token');
-    delete axios.defaults.headers.common['Authorization'];
-    history.push('/');
-  };
+  // const logout = () => {
+  //   localStorage.removeItem('token');
+  //   delete axios.defaults.headers.common['Authorization'];
+  //   close();
+  //   history.push('/');
+  // };
 
   return (
     <Card>
@@ -130,51 +131,50 @@ const SideBar = ({ open, classes, close, history }) => {
           >
             CONTACT
           </Button>
-          {!token ||
-            (auth && (
-              <Button
-                component={NavLink}
-                to='/login'
-                className={classes.sid}
-                onClick={close}
-              >
-                <i className='fa fa-sign-in' aria-hidden='true'></i>
-                Login
-              </Button>
-            ))}
-          {!token ||
-            (auth && (
-              <Button
-                component={NavLink}
-                to='/signup'
-                className={classes.sid}
-                onClick={close}
-              >
-                <i className='fa fa-user-plus' aria-hidden='true'></i>
-                Signup
-              </Button>
-            ))}
-          {token ||
-            (auth && (
-              <Button
-                component={NavLink}
-                to='/dashboard'
-                className={classes.sid}
-                onClick={close}
-              >
-                Dashboard
-              </Button>
-            ))}
-          {token ||
-            (auth && (
-              <Button className={classes.navlink} onClick={logout}>
-                logout
-              </Button>
-            ))}
+          {!(token || auth) && (
+            <Button
+              component={NavLink}
+              to='/login'
+              className={classes.sid}
+              onClick={close}
+            >
+              <i className='fa fa-sign-in' aria-hidden='true'></i>
+              Login
+            </Button>
+          )}
+
+          {!(token && auth) && (
+            <Button
+              component={NavLink}
+              to='/signup'
+              className={classes.sid}
+              onClick={close}
+            >
+              <i className='fa fa-user-plus' aria-hidden='true'></i>
+              Signup
+            </Button>
+          )}
+
+          {token && (
+            <Button
+              component={NavLink}
+              to='/dashboard'
+              className={classes.sid}
+              onClick={close}
+            >
+              Dashboard
+            </Button>
+          )}
+          {token && (
+            <Button className={classes.sid} onClick={logout}>
+              <i class='fa fa-sign-out' aria-hidden='true'></i>
+              logout
+            </Button>
+          )}
         </div>
       </div>
     </Card>
   );
 };
 
-export default withStyles(styles)(SideBar);
+export default withStyles(styles)(withRouter(SideBar));

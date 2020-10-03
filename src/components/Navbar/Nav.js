@@ -51,9 +51,10 @@ const styles = (theme) => ({
 });
 
 const Nav = (props) => {
-  const auth = localStorage.token;
-  const { token } = useContext(LearnContext);
+  let auth = localStorage.token;
+  let { token } = useContext(LearnContext);
   const [open, modalOpen] = useState(false);
+  const [tok, setTok] = useState(token);
 
   const Modal = () => {
     modalOpen(!open);
@@ -64,6 +65,9 @@ const Nav = (props) => {
   const logout = () => {
     localStorage.removeItem('token');
     delete axios.defaults.headers.common['Authorization'];
+    ModalClose();
+    setTok(null);
+
     props.history.push('/');
   };
 
@@ -97,7 +101,7 @@ const Nav = (props) => {
             >
               CONTACT
             </Button>
-            {!(token || auth) && (
+            {!(tok || auth || tok) && (
               <Button
                 variant='contained'
                 color='primary'
@@ -109,7 +113,7 @@ const Nav = (props) => {
                 Login
               </Button>
             )}
-            {!(token || auth) && (
+            {!(tok || auth || tok) && (
               <Button
                 variant='contained'
                 color='primary'
@@ -121,22 +125,26 @@ const Nav = (props) => {
                 Signup
               </Button>
             )}
-            {token ||
-              (auth && (
-                <Button
-                  component={Link}
-                  to='/dashboard'
-                  className={classes.navlink}
-                >
-                  Dashboard
-                </Button>
-              ))}
-            {token ||
-              (auth && (
-                <Button className={classes.navlink} onClick={logout}>
-                  logout
-                </Button>
-              ))}
+            {(tok || auth) && (
+              <Button
+                component={Link}
+                to='/dashboard'
+                className={classes.navlink}
+              >
+                Dashboard
+              </Button>
+            )}
+            {(tok || auth) && (
+              <Button
+                className={classes.navlink}
+                variant='contained'
+                color='primary'
+                onClick={logout}
+              >
+                <i className='fa fa-sign-out' aria-hidden='true'></i>
+                logout
+              </Button>
+            )}
           </div>
           <i
             className={`${classes.icn} fa fa-bars fa-2x`}
@@ -145,7 +153,7 @@ const Nav = (props) => {
           ></i>
         </Toolbar>
       </AppBar>
-      <SideBar open={open} close={ModalClose} />
+      <SideBar open={open} close={ModalClose} logout={logout} />
     </>
   );
 };
