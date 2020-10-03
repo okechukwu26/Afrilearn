@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Nav from './components/Navbar/Nav';
+import Footer from './components/Navbar/Footer';
 import LearnContext from './context';
 
 import axios from 'axios';
@@ -41,6 +42,7 @@ class App extends Component {
 
               <Route exact path='/dashboard' component={Dashboard} />
             </Switch>
+            <Footer />
           </LearnContext.Provider>
         </Router>
       </>

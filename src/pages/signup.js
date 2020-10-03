@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import back from '../images/av.jpg';
+import back from '../images/draw.jpg';
 
 import { Link } from 'react-router-dom';
 import LearnContext from '../context';
@@ -38,6 +38,12 @@ const styles = (theme) => ({
   textField: {
     margin: '1rem 0',
     color: '#fff',
+    '& label': {
+      color: '#f65105',
+      fontSize: '1.3rem',
+      fontWeight: 'bolder',
+      transition: 'all .5s linear',
+    },
     [theme.breakpoints.down('md')]: {
       margin: '1rem',
     },
@@ -249,6 +255,7 @@ class signup extends Component {
                 label='Phone No:'
                 fullWidth
                 helperText={errors.phone}
+                className={classes.textField}
                 color='secondary'
                 error={errors.phone ? true : false}
                 onChange={this.handleChange}

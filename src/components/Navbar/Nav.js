@@ -15,9 +15,13 @@ const styles = (theme) => ({
     background: '#f1f1f1',
   },
   head: {
-    fontFamily: "Lato,'Open Sans',Roboto,sans-serif",
-    color: '#2bb58e',
+    fontFamily: 'auto',
+    color: 'blue',
     textDecoration: 'none',
+    ' &:hover': {
+      color: 'red',
+      transition: 'all .5s linear',
+    },
   },
   tool: {
     display: 'flex',

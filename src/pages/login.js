@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import back from '../images/av.jpg';
+import back from '../images/draw.jpg';
 
 import { Link } from 'react-router-dom';
 import LearnContext from '../context';
@@ -31,10 +31,17 @@ const styles = (theme) => ({
   form: {
     marginTop: '4rem',
     textAlign: 'center',
+    marginBottom: '10rem',
   },
   textField: {
     margin: '1rem 0',
     color: '#fff',
+    '& label': {
+      color: '#f65105',
+      fontSize: '1.3rem',
+      transition: 'all .5s linear',
+      fontWeight: 'bolder',
+    },
     [theme.breakpoints.down('md')]: {
       margin: '1rem',
     },

@@ -1,5 +1,5 @@
 import React from 'react';
-import back from '../images/back.jpg';
+import back from '../images/girl.jpg';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typograhy from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -31,7 +31,7 @@ const styles = (theme) => ({
     [theme.breakpoints.down('xs')]: {
       fontSize: '1rem',
     },
-    color: '#fffdfd',
+    color: '#39395e',
     fontWeight: 'bold',
     fontFamily: 'auto',
     marginTop: 'revert',
@@ -46,8 +46,9 @@ const styles = (theme) => ({
     },
 
     textAlign: 'center',
-    color: '#fffdfd',
+    color: '##754d4d',
     margin: '2rem 20rem',
+    fontSize: '1rem',
   },
   btn: {
     display: 'flex',

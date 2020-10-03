@@ -1,6 +1,7 @@
 import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typograhy from '@material-ui/core/Typography';
+import CardContent from '@material-ui/core/CardContent';
 
 const styles = (theme) => ({
   section: {
@@ -37,12 +38,14 @@ const Section = (props) => {
       <Typograhy variant='h3' className={classes.sect}>
         Welcome to Afrilearn E-Learning
       </Typograhy>
-      <Typograhy variant='body1' className={classes.span}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil vel
-        laboriosam modi beatae voluptatum, molestiae adipisci corrupti sit
-        numquam quos? Corrupti fugit eius ipsa cumque optio vero quisquam
-        impedit expedita.
-      </Typograhy>
+      <CardContent>
+        <Typograhy variant='body1' className={classes.span}>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil vel
+          laboriosam modi beatae voluptatum, molestiae adipisci corrupti sit
+          numquam quos? Corrupti fugit eius ipsa cumque optio vero quisquam
+          impedit expedita.
+        </Typograhy>
+      </CardContent>
     </div>
   );
 };
