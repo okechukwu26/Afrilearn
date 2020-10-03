@@ -153,7 +153,13 @@ const Nav = (props) => {
           ></i>
         </Toolbar>
       </AppBar>
-      <SideBar open={open} close={ModalClose} logout={logout} />
+      <SideBar
+        open={open}
+        close={ModalClose}
+        logout={logout}
+        tok={tok}
+        auth={auth}
+      />
     </>
   );
 };

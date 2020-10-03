@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import back from '../images/draw.jpg';
 
 import { Link } from 'react-router-dom';
 import LearnContext from '../context';

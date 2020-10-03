@@ -1,11 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
 import { NavLink, withRouter } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
-import LearnContext from '../../context';
-import axios from 'axios';
-const auth = localStorage.getItem('token');
 
 const styles = (theme) => ({
   mod: {
@@ -67,8 +64,7 @@ const styles = (theme) => ({
   },
 });
 
-const SideBar = ({ open, classes, close, logout }) => {
-  const { token } = useContext(LearnContext);
+const SideBar = ({ open, classes, close, logout, tok, auth }) => {
   let className;
   if (open) {
     className = classes.open;
@@ -131,7 +127,7 @@ const SideBar = ({ open, classes, close, logout }) => {
           >
             CONTACT
           </Button>
-          {!(token || auth) && (
+          {!(tok || auth) && (
             <Button
               component={NavLink}
               to='/login'
@@ -143,7 +139,7 @@ const SideBar = ({ open, classes, close, logout }) => {
             </Button>
           )}
 
-          {!(token && auth) && (
+          {!(tok && auth) && (
             <Button
               component={NavLink}
               to='/signup'
@@ -155,7 +151,7 @@ const SideBar = ({ open, classes, close, logout }) => {
             </Button>
           )}
 
-          {token && (
+          {(tok || auth) && (
             <Button
               component={NavLink}
               to='/dashboard'
@@ -165,7 +161,7 @@ const SideBar = ({ open, classes, close, logout }) => {
               Dashboard
             </Button>
           )}
-          {token && (
+          {(tok || auth) && (
             <Button className={classes.sid} onClick={logout}>
               <i class='fa fa-sign-out' aria-hidden='true'></i>
               logout
