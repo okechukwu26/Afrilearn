@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 const token = localStorage.getItem('token');
 
