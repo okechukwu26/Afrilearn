@@ -11,3 +11,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.top {
+  height: 30rem;
+  background-image: url('./images/lib.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+}
+a:hover {
+  color: #a4038a;
+  text-decoration: none;
+}
+.fa {
+  padding: 5px;
+}
+
+.list {
+  display: flex;
+  justify-content: space-between;
+}
+.body {
+  position: relative;
+}
