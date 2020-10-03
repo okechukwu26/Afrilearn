@@ -90,7 +90,10 @@ class login extends Component {
       this.setState({ loading: true });
     }
     try {
-      const res = await axios.post('/login', newUserData);
+      const res = await axios.post(
+        'https://europe-west1-your-mind-d6382.cloudfunctions.net/api/login',
+        newUserData
+      );
       this.setAuth(res.data.idToken);
       this.setState({ loading: false });
       this.context.login(res.data.idToken);

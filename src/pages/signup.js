@@ -106,7 +106,10 @@ class signup extends Component {
       this.setState({ loading: true });
     }
     try {
-      const res = await axios.post('/signup', newUserData);
+      const res = await axios.post(
+        'https://europe-west1-your-mind-d6382.cloudfunctions.net/api/signup',
+        newUserData
+      );
       this.setState({ loading: false });
       this.setAuth(res.data.idToken);
       this.context.login(res.data.idToken);
