@@ -44,6 +44,11 @@ const styles = (theme) => ({
       fontWeight: 'bolder',
       transition: 'all .5s linear',
     },
+    '& input': {
+      color: '#012544',
+      fontWeight: 'bolder',
+      fontSize: '1.3rem',
+    },
     [theme.breakpoints.down('md')]: {
       margin: '1rem',
     },
