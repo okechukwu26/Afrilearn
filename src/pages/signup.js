@@ -100,8 +100,28 @@ class signup extends Component {
       exam: this.state.exam,
       phone: this.state.phone,
     };
-    console.log(newUserData);
+
     this.setState({ loading: true });
+    try {
+      const res = await fetch('/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newUserData),
+      });
+      if (res.status !== 201) {
+        const error = await res.json();
+        this.setState({ errors: error, loading: false });
+      }
+      if (res.status === 201) {
+        const data = await res.json();
+        console.log(data, this.props);
+        this.setAuth(data.idToken);
+        this.setState({ loading: false });
+        this.props.history.push('/dashboard');
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
     const res = await fetch('/signup', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

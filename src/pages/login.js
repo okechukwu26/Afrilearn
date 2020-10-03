@@ -84,23 +84,27 @@ class login extends Component {
       email: this.state.email,
       password: this.state.password,
     };
-    console.log(newUserData);
+
     this.setState({ loading: true });
-    const res = await fetch('/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newUserData),
-    });
-    if (res.status !== 201) {
-      const error = await res.json();
-      this.setState({ errors: error, loading: false });
-    }
-    if (res.status === 201) {
-      const data = await res.json();
-      console.log(data, this.props);
-      this.setAuth(data.idToken);
-      this.setState({ loading: false });
-      this.props.history.push('/dashboard');
+    try {
+      const res = await fetch('/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newUserData),
+      });
+      if (res.status !== 201) {
+        const error = await res.json();
+        this.setState({ errors: error, loading: false });
+      }
+      if (res.status === 201) {
+        const data = await res.json();
+        console.log(data, this.props);
+        this.setAuth(data.idToken);
+        this.setState({ loading: false });
+        this.props.history.push('/dashboard');
+      }
+    } catch (error) {
+      console.log(error.message);
     }
   };
   setAuth = (token) => {
