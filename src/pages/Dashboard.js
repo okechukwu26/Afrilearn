@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-function Dashboard() {
-  return <div>hello from dashboard</div>;
+export default class Dashboard extends Component {
+  componentDidMount() {
+    setTimeout(this.props.history.push('/dashboard'), 1000);
+  }
+  render() {
+    return <div>hello</div>;
+  }
 }
-
-export default Dashboard;

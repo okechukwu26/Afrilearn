@@ -77,6 +77,7 @@ class login extends Component {
       loading: false,
     };
   }
+  isActive = true;
 
   onSubmit = async (e) => {
     e.preventDefault();
@@ -84,24 +85,29 @@ class login extends Component {
       email: this.state.email,
       password: this.state.password,
     };
-
-    this.setState({ loading: true });
+    if (this.isActive) {
+      this.setState({ loading: true });
+    }
     try {
       const res = await fetch('/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newUserData),
       });
-      if (res.status !== 201) {
+      if (res.status !== 200) {
         const error = await res.json();
-        this.setState({ errors: error, loading: false });
+        if (this.isActive) {
+          this.setState({ errors: error, loading: false });
+        }
       }
-      if (res.status === 201) {
+      if (res.status === 200) {
         const data = await res.json();
         console.log(data, this.props);
         this.setAuth(data.idToken);
-        this.setState({ loading: false });
-        this.props.history.push('/dashboard');
+        if (this.isActive) {
+          this.setState({ loading: false });
+          this.props.history.push('/dashboard');
+        }
       }
     } catch (error) {
       console.log(error.message);
@@ -117,6 +123,9 @@ class login extends Component {
       [id]: value,
     });
   };
+  componentWillUnmount() {
+    this.isActive = false;
+  }
   render() {
     const { classes } = this.props;
     const { errors } = this.state;
@@ -142,6 +151,7 @@ class login extends Component {
                 fullWidth
                 color='secondary'
                 helperText={errors.email}
+                value={this.state.email}
                 error={errors.email ? true : false}
                 className={classes.textField}
                 onChange={this.handleChange}
@@ -160,6 +170,7 @@ class login extends Component {
                 helperText={errors.password}
                 error={errors.password ? true : false}
                 fullWidth
+                value={this.state.password}
                 color='secondary'
                 className={classes.textField}
                 onChange={this.handleChange}

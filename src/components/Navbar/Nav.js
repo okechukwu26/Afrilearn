@@ -4,7 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, withRouter } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import SideBar from './SideBar';
 
@@ -44,7 +44,6 @@ const styles = (theme) => ({
   },
 });
 const token = localStorage.getItem('token');
-
 const Nav = (props) => {
   // const context = useContext(LearnContext);
   const [open, modalOpen] = useState(false);
@@ -54,6 +53,10 @@ const Nav = (props) => {
   };
   const ModalClose = () => {
     modalOpen(!open);
+  };
+  const logout = () => {
+    localStorage.removeItem('token');
+    props.history.push('/');
   };
 
   const { classes } = props;
@@ -102,7 +105,7 @@ const Nav = (props) => {
               <Button
                 variant='contained'
                 color='primary'
-                component={NavLink}
+                component={Link}
                 to='/signup'
                 className={classes.btn}
               >
@@ -112,11 +115,16 @@ const Nav = (props) => {
             )}
             {token && (
               <Button
-                component={NavLink}
+                component={Link}
                 to='/dashboard'
                 className={classes.navlink}
               >
                 Dashboard
+              </Button>
+            )}
+            {token && (
+              <Button className={classes.navlink} onClick={logout}>
+                logout
               </Button>
             )}
           </div>
@@ -132,4 +140,4 @@ const Nav = (props) => {
   );
 };
 
-export default withStyles(styles)(Nav);
+export default withStyles(styles)(withRouter(Nav));
